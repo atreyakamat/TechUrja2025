@@ -5,6 +5,7 @@ import HeroSection from '@/components/sections/HeroSection';
 import AboutSection from '@/components/sections/AboutSection';
 import EventsSection from '@/components/sections/EventsSection';
 import SponsorsSection from '@/components/sections/SponsorsSection';
+import ContactSection from '@/components/sections/ContactSection';
 import { initSmoothScroll } from '@/lib/animations';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -40,6 +41,7 @@ function App() {
         <AboutSection />
         <EventsSection />
         <SponsorsSection />
+        <ContactSection />
       </main>
       <Footer />
     </div>

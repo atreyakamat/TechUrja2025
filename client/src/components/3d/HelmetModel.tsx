@@ -1,70 +1,88 @@
-import { useRef, useEffect } from 'react';
-import { useFrame, useLoader, useThree } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import { Mesh, Vector3 } from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
+import { Box, Sphere } from '@react-three/drei';
+import { Group } from 'three';
 
 interface HelmetModelProps {
   mousePosition: { x: number, y: number } | null;
   path: string;
 }
 
-const HelmetModel = ({ mousePosition, path }: HelmetModelProps) => {
-  const gltf = useLoader(GLTFLoader, path);
-  const modelRef = useRef<Mesh>(null);
-  const { camera } = useThree();
+// This is a simplified model as a placeholder for the helmet
+// It creates a stylized helmet-like shape with simple 3D primitives
+const HelmetModel = ({ mousePosition }: HelmetModelProps) => {
+  const groupRef = useRef<Group>(null);
   
-  // Set camera position on initial load
-  useEffect(() => {
-    if (camera) {
-      camera.position.set(0, 0, 2.5);
-      camera.lookAt(0, 0, 0);
-    }
-  }, [camera]);
-
   // Animate the model based on mouse position
   useFrame(() => {
-    if (!modelRef.current || !mousePosition) return;
+    if (!groupRef.current || !mousePosition) return;
     
     // Smooth rotation based on mouse position
     const targetRotationX = mousePosition.y * 0.5; // Vertical rotation (up/down)
     const targetRotationY = mousePosition.x * 0.5; // Horizontal rotation (left/right)
     
     // Apply smooth interpolation to the current rotation
-    modelRef.current.rotation.x = modelRef.current.rotation.x + (targetRotationX - modelRef.current.rotation.x) * 0.05;
-    modelRef.current.rotation.y = modelRef.current.rotation.y + (targetRotationY - modelRef.current.rotation.y) * 0.05;
+    groupRef.current.rotation.x = groupRef.current.rotation.x + (targetRotationX - groupRef.current.rotation.x) * 0.05;
+    groupRef.current.rotation.y = groupRef.current.rotation.y + (targetRotationY - groupRef.current.rotation.y) * 0.05;
   });
 
   return (
     <>
-      {/* Ambient light to ensure the model is visible */}
+      {/* Lighting */}
       <ambientLight intensity={0.5} />
-      
-      {/* Directional light to add some depth/shadows */}
       <directionalLight position={[5, 5, 5]} intensity={1} />
       <directionalLight position={[-5, -5, -5]} intensity={0.3} color="#C0A080" />
+      <spotLight position={[0, 5, 5]} angle={0.3} penumbra={0.8} intensity={1.5} color="#FFFFFF" />
       
-      {/* Spot light to highlight the helmet */}
-      <spotLight 
-        position={[0, 5, 5]} 
-        angle={0.3} 
-        penumbra={0.8} 
-        intensity={1.5} 
-        castShadow 
-        color="#FFFFFF" 
-      />
-      
-      {/* The 3D model */}
-      <primitive 
-        ref={modelRef}
-        object={gltf.scene} 
-        scale={0.5} 
-        position={[0, -0.5, 0]} 
-        rotation={[0, 0, 0]} 
-      />
-      
-      {/* Optional controls for development - can be removed in production */}
-      {/* <OrbitControls enableZoom={false} enablePan={false} /> */}
+      {/* Main helmet group */}
+      <group ref={groupRef} position={[0, 0, 0]}>
+        {/* Helmet base */}
+        <Box 
+          args={[1, 1.2, 1]} 
+          position={[0, 0, 0]}
+        >
+          <meshStandardMaterial color="#8B0000" metalness={0.8} roughness={0.2} />
+        </Box>
+        
+        {/* Helmet top crest */}
+        <Box 
+          args={[0.15, 0.7, 0.15]} 
+          position={[0, 0.8, 0]}
+        >
+          <meshStandardMaterial color="#FF4D4D" metalness={0.5} roughness={0.2} />
+        </Box>
+        
+        {/* Face shield */}
+        <Box 
+          args={[0.9, 0.6, 0.1]} 
+          position={[0, 0.1, 0.55]}
+        >
+          <meshStandardMaterial color="#8B0000" metalness={0.8} roughness={0.2} />
+        </Box>
+        
+        {/* Eye slits */}
+        <Box 
+          args={[0.7, 0.1, 0.05]} 
+          position={[0, 0.2, 0.61]}
+        >
+          <meshStandardMaterial color="#000000" />
+        </Box>
+        
+        {/* Decorative elements */}
+        <Sphere
+          args={[0.1, 16, 16]}
+          position={[0.5, 0.3, 0.4]}
+        >
+          <meshStandardMaterial color="#C0A080" metalness={0.9} roughness={0.1} />
+        </Sphere>
+        
+        <Sphere
+          args={[0.1, 16, 16]}
+          position={[-0.5, 0.3, 0.4]}
+        >
+          <meshStandardMaterial color="#C0A080" metalness={0.9} roughness={0.1} />
+        </Sphere>
+      </group>
     </>
   );
 };
