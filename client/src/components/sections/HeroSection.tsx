@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -8,6 +8,9 @@ gsap.registerPlugin(ScrollTrigger);
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const scrollProgressRef = useRef<HTMLDivElement>(null);
+  const sketchfabRef = useRef<HTMLIFrameElement>(null);
+  const [modelLoaded, setModelLoaded] = useState(false);
+  const [rotateModel, setRotateModel] = useState(false);
 
   useEffect(() => {
     // Parallax effect
@@ -43,13 +46,78 @@ const HeroSection = () => {
     }
 
     // Fade in animation
-    gsap.from(heroRef.current?.querySelector('.hero-content'), {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      delay: 0.5
-    });
+    const heroContent = heroRef.current?.querySelector('.hero-content');
+    if (heroContent) {
+      gsap.from(heroContent as HTMLElement, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        delay: 0.5
+      });
+    }
+
+    // Setup event listener for the iframe to track when it's loaded
+    const iframe = sketchfabRef.current;
+    if (iframe) {
+      iframe.addEventListener('load', () => {
+        setModelLoaded(true);
+      });
+
+      // Set up the Sketchfab API connection
+      window.addEventListener('message', handleSketchfabMessage);
+    }
+
+    return () => {
+      window.removeEventListener('message', handleSketchfabMessage);
+    };
   }, []);
+
+  // Handle messages from the Sketchfab API
+  const handleSketchfabMessage = (event: MessageEvent) => {
+    const iframe = sketchfabRef.current;
+    
+    // Make sure the message is from Sketchfab
+    if (iframe && event.source === iframe.contentWindow) {
+      const data = event.data;
+      
+      // Check if the API is ready
+      if (data.type === 'INITIALIZED') {
+        // The API is ready, you can start interacting with the model
+        setModelLoaded(true);
+      }
+    }
+  };
+
+  // Handle mouse movement to control model rotation
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!modelLoaded || !rotateModel) return;
+
+    const iframe = sketchfabRef.current;
+    if (!iframe || !iframe.contentWindow) return;
+
+    const rect = iframe.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+
+    // Calculate rotation based on mouse position (offset from center)
+    const rotX = (y - 0.5) * 2; // Vertical axis rotation factor
+    const rotY = (x - 0.5) * 2; // Horizontal axis rotation factor
+
+    // Create a camera position that orbits around the model based on mouse position
+    // The 3D position is calculated using trigonometric functions to create an orbit effect
+    const cameraDistance = 1.5; // Distance from center
+    const cameraX = Math.sin(rotY * Math.PI) * cameraDistance;
+    const cameraY = Math.sin(rotX * Math.PI) * cameraDistance;
+    const cameraZ = Math.cos(rotY * Math.PI) * cameraDistance;
+
+    // Send a postMessage to the Sketchfab iframe to update the camera position
+    iframe.contentWindow.postMessage({
+      type: 'SET_CAMERA_LOOK_AT',
+      eye: [cameraX, cameraY, cameraZ], // Camera position
+      target: [0, 0, 0],                // Look at center of model
+      up: [0, 1, 0]                     // Up vector defines "up" direction
+    }, '*');
+  };
 
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('about');
@@ -74,6 +142,29 @@ const HeroSection = () => {
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c0a080' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
       }}></div>
       
+      {/* 3D Model Container */}
+      <div 
+        className="hidden md:block absolute top-[15%] right-[5%] w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] z-20"
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setRotateModel(true)}
+        onMouseLeave={() => setRotateModel(false)}
+      >
+        <div className="sketchfab-embed-wrapper w-full h-full"> 
+          <iframe 
+            ref={sketchfabRef}
+            title="Black Gladiator Helmet" 
+            frameBorder="0" 
+            allowFullScreen 
+            allow="autoplay; fullscreen; xr-spatial-tracking" 
+            className="w-full h-full"
+            src="https://sketchfab.com/models/e91078291f254e5d861dbbf4f588ef13/embed?autostart=1&ui_infos=0&ui_controls=0&ui_stop=0&ui_inspector=0&ui_watermark=0&ui_watermark_link=0"
+          />
+        </div>
+        <div className="absolute bottom-[-30px] left-0 right-0 text-center text-[#C0A080]/60 text-xs">
+          <span>Mouse over to control helmet</span>
+        </div>
+      </div>
+      
       {/* Content */}
       <div className="container mx-auto flex flex-col items-center text-center z-10 hero-content">
         <div className="inline-block mb-2 py-1 px-3 border border-[#C0A080]/40 rounded-sm">
@@ -90,6 +181,20 @@ const HeroSection = () => {
         <p className="text-lg md:text-xl max-w-2xl font-opensans mb-12 text-white/80" data-parallax="0.1">
           Enter the colosseum of technology. Compete. Innovate. Conquer. Where modern gladiators battle with code and creativity.
         </p>
+        
+        {/* Mobile Only 3D Model */}
+        <div className="md:hidden w-[250px] h-[250px] mb-8">
+          <div className="sketchfab-embed-wrapper w-full h-full"> 
+            <iframe 
+              title="Black Gladiator Helmet Mobile View" 
+              frameBorder="0" 
+              allowFullScreen 
+              allow="autoplay; fullscreen; xr-spatial-tracking" 
+              className="w-full h-full"
+              src="https://sketchfab.com/models/e91078291f254e5d861dbbf4f588ef13/embed?autostart=1&ui_infos=0&ui_controls=1&ui_stop=0&ui_inspector=0"
+            />
+          </div>
+        </div>
         
         <div className="flex flex-col sm:flex-row gap-4 mb-16">
           <button 
