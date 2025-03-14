@@ -63,7 +63,7 @@ const HeroSection = () => {
 
     // Initialize Sketchfab Client
     const iframe = sketchfabRef.current;
-    if (iframe && window.Sketchfab) {
+    if (iframe && typeof (window as any).Sketchfab !== 'undefined') {
       console.log('Initializing Sketchfab client');
       
       // Create a new Sketchfab client
