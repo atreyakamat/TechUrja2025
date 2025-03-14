@@ -2,84 +2,20 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SketchfabClient from '@/lib/sketchfabClient';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// SVG of a stylized helmet for 2D fallback
-const HelmetSVG = () => (
-  <svg 
-    viewBox="0 0 300 300" 
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 mx-auto my-8"
-  >
-    {/* Helmet base */}
-    <path 
-      d="M150,50 C80,50 30,120 30,200 L60,230 L240,230 L270,200 C270,120 220,50 150,50 Z" 
-      fill="#8B0000" 
-      stroke="#C0A080" 
-      strokeWidth="3"
-    />
-    
-    {/* Helmet crest */}
-    <path 
-      d="M140,50 L140,20 L160,20 L160,50" 
-      fill="#FF4D4D" 
-      stroke="#C0A080" 
-      strokeWidth="2"
-    />
-    
-    {/* Face shield */}
-    <path 
-      d="M90,140 L90,190 L210,190 L210,140 C210,100 180,80 150,80 C120,80 90,100 90,140 Z" 
-      fill="#8B0000" 
-      stroke="#C0A080" 
-      strokeWidth="3"
-    />
-    
-    {/* Eye slits */}
-    <rect x="100" y="130" width="100" height="15" fill="#000000" />
-    
-    {/* Decorative circles */}
-    <circle cx="75" cy="140" r="10" fill="#C0A080" />
-    <circle cx="225" cy="140" r="10" fill="#C0A080" />
-  </svg>
-);
+// Sketchfab model ID for the gladiator helmet
+const SKETCHFAB_MODEL_ID = 'e91078291f254e5d861dbbf4f588ef13';
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const scrollProgressRef = useRef<HTMLDivElement>(null);
-  const helmetRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  // Handle mouse movement for the 2D helmet rotation effect
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!helmetRef.current) return;
-    
-    const rect = helmetRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    // Calculate distance from center (normalized to -1 to 1)
-    const x = (e.clientX - centerX) / (rect.width / 2);
-    const y = (e.clientY - centerY) / (rect.height / 2);
-    
-    setMousePos({ x, y });
-  };
-
-  useEffect(() => {
-    // Apply rotation based on mouse position
-    if (helmetRef.current) {
-      const rotateX = mousePos.y * -10; // Vertical tilt (inverted)
-      const rotateY = mousePos.x * 10;  // Horizontal tilt
-      
-      gsap.to(helmetRef.current, {
-        rotateX,
-        rotateY,
-        duration: 0.5,
-        ease: 'power2.out'
-      });
-    }
-  }, [mousePos]);
+  const sketchfabRef = useRef<HTMLIFrameElement>(null);
+  const sketchfabClientRef = useRef<SketchfabClient | null>(null);
+  const [modelLoaded, setModelLoaded] = useState(false);
+  const [rotateModel, setRotateModel] = useState(false);
 
   useEffect(() => {
     // Parallax effect
@@ -124,7 +60,66 @@ const HeroSection = () => {
         delay: 0.5
       });
     }
+
+    // Initialize Sketchfab Client
+    const iframe = sketchfabRef.current;
+    if (iframe && typeof (window as any).Sketchfab !== 'undefined') {
+      console.log('Initializing Sketchfab client');
+      
+      // Create a new Sketchfab client
+      const client = new SketchfabClient(iframe, SKETCHFAB_MODEL_ID);
+      sketchfabClientRef.current = client;
+      
+      // Initialize the client
+      client.init({
+        success: (api) => {
+          console.log('Sketchfab API initialized successfully');
+          setModelLoaded(true);
+        },
+        error: (error) => {
+          console.error('Sketchfab API error:', error);
+        }
+      }).catch(error => {
+        console.error('Failed to initialize Sketchfab client:', error);
+      });
+    } else {
+      console.warn('Sketchfab API not available or iframe not found');
+    }
+
+    // Clean up
+    return () => {
+      // No need to clean up Sketchfab client as it will be garbage collected
+    };
   }, []);
+
+  // Handle mouse movement to control model rotation
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const client = sketchfabClientRef.current;
+    
+    if (!client || !modelLoaded || !rotateModel) {
+      return;
+    }
+
+    // Get the mouse position relative to the section
+    const rect = heroRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+
+    // Calculate rotation based on mouse position (offset from center)
+    const rotX = (y - 0.5) * 2; // Vertical axis rotation factor
+    const rotY = (x - 0.5) * 2; // Horizontal axis rotation factor
+
+    // Create a camera position that orbits around the model based on mouse position
+    const cameraDistance = 1.5; // Distance from center
+    const cameraX = Math.sin(rotY * Math.PI) * cameraDistance;
+    const cameraY = Math.sin(rotX * Math.PI) * cameraDistance;
+    const cameraZ = Math.cos(rotY * Math.PI) * cameraDistance;
+    
+    // Update the camera position
+    client.setCameraLookAt([cameraX, cameraY, cameraZ]);
+  };
 
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('about');
@@ -137,9 +132,27 @@ const HeroSection = () => {
     <section 
       className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-16 overflow-hidden" 
       ref={heroRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setRotateModel(true)}
+      onMouseLeave={() => setRotateModel(false)}
     >
       {/* Background with overlay */}
       <div className="absolute inset-0 bg-[#121212]/90"></div>
+      
+      {/* 3D Model Container as Full Background */}
+      <div className="absolute inset-0 z-0">
+        <div className="sketchfab-embed-wrapper w-full h-full"> 
+          <iframe 
+            ref={sketchfabRef}
+            title="Black Gladiator Helmet" 
+            frameBorder="0" 
+            allowFullScreen 
+            allow="autoplay; fullscreen; xr-spatial-tracking" 
+            className="w-full h-full"
+            src="https://sketchfab.com/models/e91078291f254e5d861dbbf4f588ef13/embed?autostart=1&ui_infos=0&ui_controls=0&ui_stop=0&ui_inspector=0&ui_watermark=0&ui_watermark_link=0&ui_theme=dark&camera=0&preload=1&api=1"
+          />
+        </div>
+      </div>
       
       {/* Content Overlay - adds slight gradient to ensure text readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/80 to-[#121212]/50 z-5"></div>
@@ -151,23 +164,11 @@ const HeroSection = () => {
       
       {/* Interaction Hint */}
       <div className="absolute top-4 left-0 right-0 text-center text-[#C0A080]/70 text-sm font-cinzel z-20">
-        <span>Interactive Gladiator Helmet</span>
+        <span>Move your mouse to interact with the helmet</span>
       </div>
       
-      {/* 2D Interactive Helmet */}
-      <div 
-        ref={helmetRef}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-1 opacity-20 pointer-events-none select-none"
-        style={{ perspective: '1000px' }}
-      >
-        <HelmetSVG />
-      </div>
-            
       {/* Content */}
-      <div 
-        className="container mx-auto flex flex-col items-center text-center z-10 hero-content"
-        onMouseMove={handleMouseMove}
-      >
+      <div className="container mx-auto flex flex-col items-center text-center z-10 hero-content">
         <div className="inline-block mb-2 py-1 px-3 border border-[#C0A080]/40 rounded-sm">
           <span className="text-[#C0A080] font-cinzel tracking-widest text-sm">MAY 15-17, 2025</span>
         </div>

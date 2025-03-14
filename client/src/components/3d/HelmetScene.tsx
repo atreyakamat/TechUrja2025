@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import HelmetModel from './HelmetModel';
@@ -36,19 +36,14 @@ const HelmetScene = ({ className = '' }: HelmetSceneProps) => {
       onMouseLeave={handleMouseLeave}
     >
       <Canvas
-        gl={{ antialias: true, alpha: true }}
-        dpr={[1, 2]}
+        dpr={[1, 2]} // Responsive rendering based on device pixel ratio
         camera={{ position: [0, 0, 2.5], fov: 50 }}
-        style={{ 
-          background: 'transparent',
-          width: '100%',
-          height: '100%'
-        }}
+        style={{ background: 'transparent' }}
       >
         <Suspense fallback={null}>
           <HelmetModel 
             mousePosition={mousePosition}
-            path="" // Empty path as we're not using the GLB file anymore
+            path="/attached_assets/winged_helmet_gameready.glb" 
           />
         </Suspense>
       </Canvas>
