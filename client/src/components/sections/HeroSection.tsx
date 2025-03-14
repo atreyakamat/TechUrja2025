@@ -59,8 +59,21 @@ const HeroSection = () => {
     // Setup event listener for the iframe to track when it's loaded
     const iframe = sketchfabRef.current;
     if (iframe) {
+      // Make sure iframe is fully loaded
       iframe.addEventListener('load', () => {
+        console.log('Sketchfab iframe loaded');
         setModelLoaded(true);
+        
+        // Add a slight delay to ensure the API is ready
+        setTimeout(() => {
+          // Try to initialize API directly
+          if (iframe.contentWindow) {
+            console.log('Sending API_READY message to Sketchfab');
+            iframe.contentWindow.postMessage(JSON.stringify({
+              type: 'API_READY'
+            }), '*');
+          }
+        }, 1000);
       });
 
       // Set up the Sketchfab API connection
@@ -78,10 +91,24 @@ const HeroSection = () => {
     
     // Make sure the message is from Sketchfab
     if (iframe && event.source === iframe.contentWindow) {
-      const data = event.data;
+      let data = event.data;
+      
+      // Try to parse if data is a string
+      if (typeof data === 'string') {
+        try {
+          data = JSON.parse(data);
+          console.log('Parsed message from Sketchfab:', data);
+        } catch (e) {
+          console.log('Received non-JSON message from Sketchfab:', data);
+          return;
+        }
+      }
+      
+      console.log('Received message from Sketchfab:', data);
       
       // Check if the API is ready
       if (data.type === 'INITIALIZED') {
+        console.log('Sketchfab API initialized!');
         // The API is ready, you can start interacting with the model
         setModelLoaded(true);
       }
@@ -90,10 +117,21 @@ const HeroSection = () => {
 
   // Handle mouse movement to control model rotation
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!modelLoaded || !rotateModel) return;
+    // Log mouse move to debug
+    if (!modelLoaded) {
+      console.log('Model not loaded yet, mouse interaction inactive');
+      return;
+    }
+    
+    if (!rotateModel) {
+      return;
+    }
 
     const iframe = sketchfabRef.current;
-    if (!iframe || !iframe.contentWindow) return;
+    if (!iframe || !iframe.contentWindow) {
+      console.log('Iframe or contentWindow not available');
+      return;
+    }
 
     const rect = iframe.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
@@ -110,13 +148,19 @@ const HeroSection = () => {
     const cameraY = Math.sin(rotX * Math.PI) * cameraDistance;
     const cameraZ = Math.cos(rotY * Math.PI) * cameraDistance;
 
-    // Send a postMessage to the Sketchfab iframe to update the camera position
-    iframe.contentWindow.postMessage({
+    // Create the message object
+    const message = {
       type: 'SET_CAMERA_LOOK_AT',
       eye: [cameraX, cameraY, cameraZ], // Camera position
       target: [0, 0, 0],                // Look at center of model
       up: [0, 1, 0]                     // Up vector defines "up" direction
-    }, '*');
+    };
+    
+    // Console log for debugging
+    console.log('Sending camera update to Sketchfab:', message);
+    
+    // Send a postMessage to the Sketchfab iframe to update the camera position
+    iframe.contentWindow.postMessage(message, '*');
   };
 
   const scrollToAbout = () => {
@@ -147,7 +191,7 @@ const HeroSection = () => {
             allowFullScreen 
             allow="autoplay; fullscreen; xr-spatial-tracking" 
             className="w-full h-full"
-            src="https://sketchfab.com/models/e91078291f254e5d861dbbf4f588ef13/embed?autostart=1&ui_infos=0&ui_controls=0&ui_stop=0&ui_inspector=0&ui_watermark=0&ui_watermark_link=0&ui_theme=dark&camera=0"
+            src="https://sketchfab.com/models/e91078291f254e5d861dbbf4f588ef13/embed?autostart=1&ui_infos=0&ui_controls=0&ui_stop=0&ui_inspector=0&ui_watermark=0&ui_watermark_link=0&ui_theme=dark&camera=0&preload=1&api=1"
           />
         </div>
       </div>
