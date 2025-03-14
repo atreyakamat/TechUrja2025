@@ -1,8 +1,20 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import path from "path";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Serve the 3D model files from the attached_assets directory
+  app.use("/attached_assets", (req, res, next) => {
+    const filePath = path.join(__dirname, "..", "attached_assets", req.path);
+    res.sendFile(filePath, (err) => {
+      if (err) {
+        console.error(`Error serving file ${filePath}:`, err);
+        next();
+      }
+    });
+  });
+
   // put application routes here
   // prefix all routes with /api
 
