@@ -127,28 +127,18 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-16 overflow-hidden" ref={heroRef}>
+    <section 
+      className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-16 overflow-hidden" 
+      ref={heroRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setRotateModel(true)}
+      onMouseLeave={() => setRotateModel(false)}
+    >
       {/* Background with overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: "linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1590177600189-8222d0a634b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')",
-          backgroundAttachment: "fixed" 
-        }}
-      ></div>
+      <div className="absolute inset-0 bg-[#121212]/90"></div>
       
-      {/* Pattern overlay */}
-      <div className="absolute inset-0 opacity-10" style={{ 
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c0a080' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
-      }}></div>
-      
-      {/* 3D Model Container */}
-      <div 
-        className="hidden md:block absolute top-[15%] right-[5%] w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] z-20"
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setRotateModel(true)}
-        onMouseLeave={() => setRotateModel(false)}
-      >
+      {/* 3D Model Container as Full Background */}
+      <div className="absolute inset-0 z-0">
         <div className="sketchfab-embed-wrapper w-full h-full"> 
           <iframe 
             ref={sketchfabRef}
@@ -157,12 +147,22 @@ const HeroSection = () => {
             allowFullScreen 
             allow="autoplay; fullscreen; xr-spatial-tracking" 
             className="w-full h-full"
-            src="https://sketchfab.com/models/e91078291f254e5d861dbbf4f588ef13/embed?autostart=1&ui_infos=0&ui_controls=0&ui_stop=0&ui_inspector=0&ui_watermark=0&ui_watermark_link=0"
+            src="https://sketchfab.com/models/e91078291f254e5d861dbbf4f588ef13/embed?autostart=1&ui_infos=0&ui_controls=0&ui_stop=0&ui_inspector=0&ui_watermark=0&ui_watermark_link=0&ui_theme=dark&camera=0"
           />
         </div>
-        <div className="absolute bottom-[-30px] left-0 right-0 text-center text-[#C0A080]/60 text-xs">
-          <span>Mouse over to control helmet</span>
-        </div>
+      </div>
+      
+      {/* Content Overlay - adds slight gradient to ensure text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/80 to-[#121212]/50 z-5"></div>
+      
+      {/* Pattern overlay */}
+      <div className="absolute inset-0 opacity-20 z-5" style={{ 
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c0a080' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
+      }}></div>
+      
+      {/* Interaction Hint */}
+      <div className="absolute top-4 left-0 right-0 text-center text-[#C0A080]/70 text-sm font-cinzel z-20">
+        <span>Move your mouse to interact with the helmet</span>
       </div>
       
       {/* Content */}
@@ -171,30 +171,16 @@ const HeroSection = () => {
           <span className="text-[#C0A080] font-cinzel tracking-widest text-sm">MAY 15-17, 2025</span>
         </div>
         
-        <h1 className="font-cinzel text-5xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-wider">
+        <h1 className="font-cinzel text-5xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-wider shadow-text">
           <span className="text-white">TECH</span><span className="text-[#FF4D4D]">URJA</span>
           <span className="block text-2xl md:text-4xl lg:text-5xl mt-2 text-[#C0A080]">2025</span>
         </h1>
         
         <div className="w-24 h-1 bg-gradient-to-r from-[#8B0000] to-[#C0A080] mb-8"></div>
         
-        <p className="text-lg md:text-xl max-w-2xl font-opensans mb-12 text-white/80" data-parallax="0.1">
+        <p className="text-lg md:text-xl max-w-2xl font-opensans mb-12 text-white/80 shadow-text" data-parallax="0.1">
           Enter the colosseum of technology. Compete. Innovate. Conquer. Where modern gladiators battle with code and creativity.
         </p>
-        
-        {/* Mobile Only 3D Model */}
-        <div className="md:hidden w-[250px] h-[250px] mb-8">
-          <div className="sketchfab-embed-wrapper w-full h-full"> 
-            <iframe 
-              title="Black Gladiator Helmet Mobile View" 
-              frameBorder="0" 
-              allowFullScreen 
-              allow="autoplay; fullscreen; xr-spatial-tracking" 
-              className="w-full h-full"
-              src="https://sketchfab.com/models/e91078291f254e5d861dbbf4f588ef13/embed?autostart=1&ui_infos=0&ui_controls=1&ui_stop=0&ui_inspector=0"
-            />
-          </div>
-        </div>
         
         <div className="flex flex-col sm:flex-row gap-4 mb-16">
           <button 
@@ -218,7 +204,7 @@ const HeroSection = () => {
       </div>
       
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center">
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center z-20">
         <button 
           onClick={scrollToAbout}
           className="text-[#C0A080]/70 hover:text-[#C0A080] transition-colors duration-300 animate-bounce"
@@ -228,7 +214,7 @@ const HeroSection = () => {
       </div>
       
       {/* Progress bar */}
-      <div className="absolute bottom-0 left-0 right-0">
+      <div className="absolute bottom-0 left-0 right-0 z-20">
         <div 
           className="h-1 bg-gradient-to-r from-[#8B0000] to-[#C0A080] w-0" 
           ref={scrollProgressRef}

@@ -94,3 +94,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #C0A080, #8B0000);
 }
+
+/* Shadow text for better readability over 3D models */
+.shadow-text {
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8), 0px 4px 8px rgba(0, 0, 0, 0.6);
+}

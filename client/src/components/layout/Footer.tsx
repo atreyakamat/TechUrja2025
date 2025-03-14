@@ -70,14 +70,7 @@ const Footer = () => {
                       Sponsors
                     </button>
                   </li>
-                  <li>
-                    <button 
-                      onClick={() => scrollToSection('contact')}
-                      className="text-white/60 hover:text-[#C0A080] transition-colors duration-300"
-                    >
-                      Contact
-                    </button>
-                  </li>
+
                 </ul>
               </div>
               

@@ -68,13 +68,6 @@ const Navbar = () => {
             SPONSORS
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#C0A080] transition-all duration-300 group-hover:w-full"></span>
           </button>
-          <button 
-            onClick={() => scrollToSection('contact')}
-            className="relative text-white font-cinzel tracking-wide hover:text-[#C0A080] transition-colors duration-300 group"
-          >
-            CONTACT
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#C0A080] transition-all duration-300 group-hover:w-full"></span>
-          </button>
         </div>
         
         <button 
@@ -112,12 +105,6 @@ const Navbar = () => {
             className="text-white font-cinzel text-xl tracking-wide hover:text-[#C0A080] transition-colors duration-300"
           >
             SPONSORS
-          </button>
-          <button 
-            onClick={() => scrollToSection('contact')}
-            className="text-white font-cinzel text-xl tracking-wide hover:text-[#C0A080] transition-colors duration-300"
-          >
-            CONTACT
           </button>
         </div>
       )}
