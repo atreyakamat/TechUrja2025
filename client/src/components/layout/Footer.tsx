@@ -190,9 +190,31 @@ const Footer = () => {
       <div className="py-4 border-t border-[#C0A080]/10 bg-[#0A0A0A]">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-white/40 text-sm mb-4 md:mb-0">
-              {footerData.copyright}
-            </p>
+            <div className="flex flex-col items-center md:items-start mb-4 md:mb-0">
+              <p className="text-white/40 text-sm">
+                {footerData.copyright}
+              </p>
+              <p className="text-white/40 text-sm mt-1">
+                Designed by{" "}
+                <a 
+                  href="https://www.elysiumstudiosgoa.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#C0A080]/70 hover:text-[#C0A080] transition-colors"
+                >
+                  ELYSIUM STUDIOS GOA
+                </a>
+                {" "}and{" "} 
+                <a 
+                  href="https://dreamcodestudio.netlify.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#C0A080]/70 hover:text-[#C0A080] transition-colors"
+                >
+                  DREAM CODE STUDIOS
+                </a>
+              </p>
+            </div>
             
             <div className="flex flex-wrap justify-center space-x-4">
               {footerData.legalLinks.map((link, index) => (

@@ -15,6 +15,7 @@ import 'aos/dist/aos.css';
 // Page imports
 import NotFound from '@/pages/not-found';
 import GuidelinesPage from '@/pages/resources/guidelines';
+import FAQsPage from '@/pages/resources/faqs';
 import TermsPage from '@/pages/legal/terms';
 
 // Register GSAP plugins
@@ -55,6 +56,7 @@ function App() {
         <Switch>
           <Route path="/" component={HomePage} />
           <Route path="/resources/guidelines" component={GuidelinesPage} />
+          <Route path="/resources/faqs" component={FAQsPage} />
           <Route path="/legal/terms" component={TermsPage} />
           <Route component={NotFound} />
         </Switch>
