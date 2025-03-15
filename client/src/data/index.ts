@@ -215,28 +215,12 @@ export const footerData: FooterData = {
       title: 'Resources',
       links: [
         { title: 'Event Guidelines', url: '/resources/guidelines' },
-        { title: 'Preparation Resources', url: '/resources/preparation' },
-        { title: 'FAQs', url: '/resources/faqs' },
-        { title: 'Schedule', url: '/resources/schedule' },
-        { title: 'Download Brochure', url: '/resources/brochure.pdf', isExternal: true }
-      ]
-    },
-    {
-      title: 'Information',
-      links: [
-        { title: 'About TECHURJA', url: '/about' },
-        { title: 'Sponsors', url: '/sponsors' },
-        { title: 'Contact Us', url: '/contact' },
-        { title: 'Venue Information', url: '/venue' },
-        { title: 'Travel & Accommodation', url: '/travel' }
+        { title: 'FAQs', url: '/resources/faqs' }
       ]
     }
   ],
   legalLinks: [
-    { title: 'Terms & Conditions', url: '/legal/terms' },
-    { title: 'Privacy Policy', url: '/legal/privacy' },
-    { title: 'Cookie Policy', url: '/legal/cookies' },
-    { title: 'Code of Conduct', url: '/legal/code-of-conduct' }
+    { title: 'Terms & Conditions', url: '/legal/terms' }
   ],
   copyright: '© 2025 TECHURJA. All rights reserved.'
 };
