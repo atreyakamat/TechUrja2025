@@ -1,4 +1,4 @@
-import { Event, Sponsor, ContactInfo } from '@/types';
+import { Event, Sponsor, ContactInfo, FooterData } from '@/types';
 
 export const events: Event[] = [
   {
@@ -178,10 +178,10 @@ export const contactInfo: ContactInfo = {
   email: 'contact@techurja2025.com',
   phone: '+91 9876543210',
   venue: {
-    name: 'Tech Colosseum, Innovation Campus',
-    address: 'Innovation Campus',
-    city: 'Bangalore, India',
-    postalCode: '560001'
+    name: 'Agnel Technical Educational Complex',
+    address: 'Assagao',
+    city: 'Goa, India',
+    postalCode: '403507'
   },
   social: {
     twitter: 'https://twitter.com/techurja2025',
@@ -189,4 +189,54 @@ export const contactInfo: ContactInfo = {
     instagram: 'https://instagram.com/techurja2025',
     linkedin: 'https://linkedin.com/company/techurja2025'
   }
+};
+
+export const footerData: FooterData = {
+  location: {
+    name: 'Agnel Technical Educational Complex',
+    address: 'Assagao',
+    city: 'Goa, India',
+    postalCode: '403507',
+    mapUrl: 'https://maps.google.com/?q=Agnel+Technical+Educational+Complex+Assagao+Goa+403507'
+  },
+  sections: [
+    {
+      title: 'Events',
+      links: [
+        { title: 'Code Colosseum', url: '/events/code-colosseum' },
+        { title: 'Hack Spartacus', url: '/events/hack-spartacus' },
+        { title: 'Design Duel', url: '/events/design-duel' },
+        { title: 'Cyber Gladiators', url: '/events/cyber-gladiators' },
+        { title: 'AI Arena', url: '/events/ai-arena' },
+        { title: 'Robotic Warfare', url: '/events/robotic-warfare' }
+      ]
+    },
+    {
+      title: 'Resources',
+      links: [
+        { title: 'Event Guidelines', url: '/resources/guidelines' },
+        { title: 'Preparation Resources', url: '/resources/preparation' },
+        { title: 'FAQs', url: '/resources/faqs' },
+        { title: 'Schedule', url: '/resources/schedule' },
+        { title: 'Download Brochure', url: '/resources/brochure.pdf', isExternal: true }
+      ]
+    },
+    {
+      title: 'Information',
+      links: [
+        { title: 'About TECHURJA', url: '/about' },
+        { title: 'Sponsors', url: '/sponsors' },
+        { title: 'Contact Us', url: '/contact' },
+        { title: 'Venue Information', url: '/venue' },
+        { title: 'Travel & Accommodation', url: '/travel' }
+      ]
+    }
+  ],
+  legalLinks: [
+    { title: 'Terms & Conditions', url: '/legal/terms' },
+    { title: 'Privacy Policy', url: '/legal/privacy' },
+    { title: 'Cookie Policy', url: '/legal/cookies' },
+    { title: 'Code of Conduct', url: '/legal/code-of-conduct' }
+  ],
+  copyright: '© 2025 TECHURJA. All rights reserved.'
 };

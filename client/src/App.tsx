@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Route, Switch } from 'wouter';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/sections/HeroSection';
@@ -11,8 +12,23 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+// Page imports
+import NotFound from '@/pages/not-found';
+import GuidelinesPage from '@/pages/resources/guidelines';
+import TermsPage from '@/pages/legal/terms';
+
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
+
+// Homepage component
+const HomePage = () => (
+  <>
+    <HeroSection />
+    <AboutSection />
+    <EventsSection />
+    <SponsorsSection />
+  </>
+);
 
 function App() {
   useEffect(() => {
@@ -36,10 +52,12 @@ function App() {
     <div className="bg-[#121212] min-h-screen">
       <Navbar />
       <main>
-        <HeroSection />
-        <AboutSection />
-        <EventsSection />
-        <SponsorsSection />
+        <Switch>
+          <Route path="/" component={HomePage} />
+          <Route path="/resources/guidelines" component={GuidelinesPage} />
+          <Route path="/legal/terms" component={TermsPage} />
+          <Route component={NotFound} />
+        </Switch>
       </main>
       <Footer />
     </div>

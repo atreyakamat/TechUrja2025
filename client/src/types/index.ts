@@ -35,3 +35,27 @@ export interface ContactInfo {
     linkedin: string;
   };
 }
+
+export interface FooterLink {
+  title: string;
+  url: string;
+  isExternal?: boolean;
+}
+
+export interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
+
+export interface FooterData {
+  location: {
+    name: string;
+    address: string;
+    city: string;
+    postalCode: string;
+    mapUrl?: string;
+  };
+  sections: FooterSection[];
+  legalLinks: FooterLink[];
+  copyright: string;
+}
