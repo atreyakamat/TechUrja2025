@@ -11,6 +11,18 @@ export interface Event {
   image: string;
 }
 
+export interface EventType {
+  event_name: string;
+  desc: string;
+  prize_pool: {
+    position: string;
+    amount: number;
+  }[];
+  link: string;
+  image_src:string;
+}
+
+
 export interface Sponsor {
   id: string;
   name: string;

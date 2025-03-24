@@ -27,7 +27,7 @@ const HomePage = () => (
     <HeroSection />
     <AboutSection />
     <EventsSection />
-    <SponsorsSection />
+    {/* <SponsorsSection /> */}
   </>
 );
 
@@ -58,7 +58,7 @@ function App() {
           <Route path="/resources/guidelines" component={GuidelinesPage} />
           <Route path="/resources/faqs" component={FAQsPage} />
           <Route path="/legal/terms" component={TermsPage} />
-          <Route component={NotFound} />
+          {/* <Route component={NotFound} /> */}
         </Switch>
       </main>
       <Footer />

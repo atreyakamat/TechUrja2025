@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { events } from '@/data';
+import { eventsData } from '@/data';
 import EventCard from '@/components/ui/EventCard';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { EventType } from '@/types';
 
 const EventsSection = () => {
   useEffect(() => {
@@ -33,9 +34,9 @@ const EventsSection = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event, index) => (
+          {eventsData.map((event :EventType, index:number) => (
             <EventCard 
-              key={event.id} 
+              key={index} 
               event={event} 
               delay={(index + 1) * 100}
             />

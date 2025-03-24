@@ -131,16 +131,16 @@ const HeroSection = () => {
   return (
     <section 
       className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-16 overflow-hidden" 
-      ref={heroRef}
+      // ref={heroRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setRotateModel(true)}
       onMouseLeave={() => setRotateModel(false)}
     >
       {/* Background with overlay */}
-      <div className="absolute inset-0 bg-[#121212]/90"></div>
+      {/* <div className="absolute inset-0 bg-[#121212]/90"></div> */}
       
       {/* 3D Model Container as Full Background */}
-      <div className="absolute inset-0 z-0">
+      {/* <div className="absolute inset-0 z-0">
         <div className="sketchfab-embed-wrapper w-full h-full"> 
           <iframe 
             ref={sketchfabRef}
@@ -152,25 +152,25 @@ const HeroSection = () => {
             src="https://sketchfab.com/models/e91078291f254e5d861dbbf4f588ef13/embed?autostart=1&ui_infos=0&ui_controls=0&ui_stop=0&ui_inspector=0&ui_watermark=0&ui_watermark_link=0&ui_theme=dark&camera=0&preload=1&api=1"
           />
         </div>
-      </div>
+      </div> */}
       
       {/* Content Overlay - adds slight gradient to ensure text readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/80 to-[#121212]/50 z-5"></div>
       
       {/* Pattern overlay */}
-      <div className="absolute inset-0 opacity-20 z-5" style={{ 
+      {/* <div className="absolute inset-0 opacity-20 z-5" style={{ 
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c0a080' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
-      }}></div>
+      }}></div> */}
       
       {/* Interaction Hint */}
-      <div className="absolute top-4 left-0 right-0 text-center text-[#C0A080]/70 text-sm font-cinzel z-20">
+      {/* <div className="absolute top-4 left-0 right-0 text-center text-[#C0A080]/70 text-sm font-cinzel z-20">
         <span>Move your mouse to interact with the helmet</span>
-      </div>
+      </div> */}
       
       {/* Content */}
       <div className="container mx-auto flex flex-col items-center text-center z-10 hero-content">
         <div className="inline-block mb-2 py-1 px-3 border border-[#C0A080]/40 rounded-sm">
-          <span className="text-[#C0A080] font-cinzel tracking-widest text-sm">MAY 15-17, 2025</span>
+          <span className="text-[#C0A080] font-cinzel tracking-widest text-sm">APRIL 10-11, 2025</span>
         </div>
         
         <h1 className="font-cinzel text-5xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-wider shadow-text">

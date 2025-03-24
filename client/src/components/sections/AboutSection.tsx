@@ -49,22 +49,22 @@ const AboutSection = () => {
             
             <div className="grid grid-cols-2 gap-6 mt-10">
               <div className="flex flex-col items-center">
-                <span className="text-[#C0A080] text-4xl font-bold mb-2" data-aos="fade-up" data-aos-delay="100">3+</span>
+                <span className="text-[#C0A080] text-4xl font-bold mb-2" data-aos="fade-up" data-aos-delay="100">1+</span>
                 <span className="text-white/70 text-sm uppercase tracking-wider">Days</span>
               </div>
               
               <div className="flex flex-col items-center">
-                <span className="text-[#C0A080] text-4xl font-bold mb-2" data-aos="fade-up" data-aos-delay="200">10+</span>
+                <span className="text-[#C0A080] text-4xl font-bold mb-2" data-aos="fade-up" data-aos-delay="200">20+</span>
                 <span className="text-white/70 text-sm uppercase tracking-wider">Events</span>
               </div>
               
               <div className="flex flex-col items-center">
-                <span className="text-[#C0A080] text-4xl font-bold mb-2" data-aos="fade-up" data-aos-delay="300">50+</span>
+                <span className="text-[#C0A080] text-4xl font-bold mb-2" data-aos="fade-up" data-aos-delay="300">25+</span>
                 <span className="text-white/70 text-sm uppercase tracking-wider">Sponsors</span>
               </div>
               
               <div className="flex flex-col items-center">
-                <span className="text-[#C0A080] text-4xl font-bold mb-2" data-aos="fade-up" data-aos-delay="400">5000+</span>
+                <span className="text-[#C0A080] text-4xl font-bold mb-2" data-aos="fade-up" data-aos-delay="400">300+</span>
                 <span className="text-white/70 text-sm uppercase tracking-wider">Participants</span>
               </div>
             </div>
@@ -73,7 +73,7 @@ const AboutSection = () => {
           <div className="md:w-1/2 grid grid-cols-2 gap-4" data-aos="fade-left">
             <div className="aspect-square overflow-hidden border border-[#C0A080] shadow-lg shadow-[#C0A080]/20 rounded-sm transform translate-y-8">
               <img 
-                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                src="about/1.jpeg" 
                 alt="Tech event" 
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
               />
@@ -81,7 +81,7 @@ const AboutSection = () => {
             
             <div className="aspect-square overflow-hidden border border-[#C0A080] shadow-lg shadow-[#C0A080]/20 rounded-sm">
               <img 
-                src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                src="about/2.jpeg" 
                 alt="Spartan warrior" 
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
               />
@@ -89,7 +89,7 @@ const AboutSection = () => {
             
             <div className="aspect-square overflow-hidden border border-[#C0A080] shadow-lg shadow-[#C0A080]/20 rounded-sm">
               <img 
-                src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                src="about/3.jpeg" 
                 alt="Colosseum" 
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
               />
@@ -97,7 +97,7 @@ const AboutSection = () => {
             
             <div className="aspect-square overflow-hidden border border-[#C0A080] shadow-lg shadow-[#C0A080]/20 rounded-sm transform -translate-y-8">
               <img 
-                src="https://images.unsplash.com/photo-1530533718754-001d2668365a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                src="about/4.jpeg" 
                 alt="Tech conference" 
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
               />
