@@ -384,10 +384,11 @@ export const contactInfo: ContactInfo = {
     postalCode: '403507'
   },
   social: {
-    twitter: 'https://twitter.com/techurja2025',
-    facebook: 'https://facebook.com/techurja2025',
-    instagram: 'https://instagram.com/techurja2025',
-    linkedin: 'https://linkedin.com/company/techurja2025'
+    twitter: 'https://x.com/AitdGoa',
+    facebook: 'https://www.facebook.com/AITDGOA/',
+    instagram: 'https://www.instagram.com/studentscouncil.aitd/',
+    linkedin: 'https://www.linkedin.com/school/aitdgoa/',
+    youtube: 'https://www.youtube.com/channel/UCuH3I8Qyq6zgXvJ7y0g6yJw'
   }
 };
 
