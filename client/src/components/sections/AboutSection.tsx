@@ -40,7 +40,7 @@ const AboutSection = () => {
             <div className="w-20 h-1 bg-gradient-to-r from-[#8B0000] to-[#C0A080] mb-8"></div>
             
             <p className="text-white/80 mb-6 font-opensans leading-relaxed">
-              TECHURJA 2025 embraces the spirit of ancient gladiators in a contemporary tech arena. This three-day spectacle brings together the brightest minds from across the globe to compete, innovate, and conquer challenges in various technological disciplines.
+              TECHURJA 2025 embraces the spirit of ancient gladiators in a contemporary tech arena. This two-day spectacle brings together the brightest minds from across the globe to compete, innovate, and conquer challenges in various technological disciplines.
             </p>
             
             <p className="text-white/80 mb-6 font-opensans leading-relaxed">
