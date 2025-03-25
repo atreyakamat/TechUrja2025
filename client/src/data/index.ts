@@ -84,7 +84,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 8000 }
     ],
     "link": "https://tally.so/r/nG5N7z",
-    "image_src": "/images/robosoccer.png"
+    "image_src": "/images/robosoccer.webp"
   },
   {
     "event_name": "Codus Maximus - Coding Challenge",
@@ -94,7 +94,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://tally.so/r/mev1PQ",
-    "image_src": "/images/coding.png"
+    "image_src": "/images/coding.webp"
   },
   {
     "event_name": "Arena of Aegis - CTF Challenge",
@@ -104,7 +104,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://tally.so/r/mDMrEl",
-    "image_src": "/images/ctf.png"
+    "image_src": "/images/ctf.webp"
   },
   {
     "event_name": "Battle of Centurions (Valorant)",
@@ -114,7 +114,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://docs.google.com/forms/d/e/1FAIpQLSdBih2ixx2NZqXKw3sl-V_1PLz_QvLZbqBWubaEPu_u8caheA/viewform?usp=sf_link",
-    "image_src": "/images/valorant.png"
+    "image_src": "/images/valorant.webp"
   },
   {
     "event_name": "CAD (Arena of Innovation)",
@@ -124,7 +124,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://docs.google.com/forms/d/e/1FAIpQLSdlzVkU8hVanBpo6nbs0I44R2bNTyaFWnsSZxcDgYFf7IAzqQ/viewform?usp=header",
-    "image_src": "/images/cad.png"
+    "image_src": "/images/cad.webp"
   },
   {
     "event_name": "Bridge Construction Competition (Pillar of Valor)",
@@ -134,7 +134,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://docs.google.com/forms/d/e/1FAIpQLSfrG4SqCDaXM54raixfw6v0w5QNcBgNfpkhqTvlLgA1oGvKDw/viewform?usp=header",
-    "image_src": "/images/bridge.png"
+    "image_src": "/images/bridge.webp"
   },
   {
     "event_name": "FIFA (The Gladiator Cup)",
@@ -144,7 +144,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://docs.google.com/forms/d/e/1FAIpQLSfDUoEHpnD0whCC8qKcRQCuWszu3x3cpcWUuDxrIcDidMyevA/viewform?usp=header",
-    "image_src": "/images/fifa.png"
+    "image_src": "/images/fifa.webp"
   },
   {
     "event_name": "Robo Sumo (ROBO GLADIUS)",
@@ -154,7 +154,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 10000 }
     ],
     "link": "https://docs.google.com/forms/d/e/1FAIpQLSfYdkxLMwL-jiW6SLlgxY3tlSDUsKtgVIUAKy09CtXUWZu8ew/viewform?usp=header",
-    "image_src": "/images/robosumo.png"
+    "image_src": "/images/robosumo.webp"
   },
   {
     "event_name": "Gladiator's Trail (LFR)",
@@ -164,7 +164,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://forms.gle/XsvG9phGSzTphdwC7",
-    "image_src": "/images/lfr.png"
+    "image_src": "/images/lfr.webp"
   },
   {
     "event_name": "PITCH GLADIATOR (Virtual Cricket)",
@@ -174,7 +174,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://docs.google.com/forms/d/e/1FAIpQLSdXVkcvqhotDl7Dya2jT5DfbEkvjcY4rzlcSKO36_AK183SKw/viewform?usp=dialog",
-    "image_src": "/images/cricket.png"
+    "image_src": "/images/cricket.webp"
   },
   {
     "event_name": "INVENTOR'S GAUNTLET (Project Exhibition)",
@@ -184,7 +184,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://forms.gle/3j7h4cT5HamZDgms9",
-    "image_src": "/images/projectexpo.png"
+    "image_src": "/images/projectexpo.webp"
   },
   {
     "event_name": "CIRCUIT COLOSSEUM (Circuit Debugging)",
@@ -194,7 +194,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://docs.google.com/forms/d/e/1FAIpQLSeAz48dvWdFrk4IGi20_OcRt6R8PcVQS1uBTazkXobA-54mYw/viewform?usp=dialog",
-    "image_src": "/images/circuit.png"
+    "image_src": "/images/circuit.webp"
   },
   {
     "event_name": "BATTLE OF TITANS (BGMI)",
@@ -204,7 +204,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://forms.gle/w3hPJbxRsHjahYPS9",
-    "image_src": "/images/bgmi.png"
+    "image_src": "/images/bgmi.webp"
   },
   {
     "event_name": "STRATOVATE: Business Buzz",
@@ -214,7 +214,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://docs.google.com/forms/d/e/1FAIpQLSf18jRNYVax1Ns93aBko8OhdlFZCLm58Z7s4U9hcrmav5pdGQ/viewform?usp=sharing",
-    "image_src": "/images/bizbuzz.png"
+    "image_src": "/images/bizbuzz.webp"
   },
   {
     "event_name": "TechLegion - Lead Like a Warrior, Conquer Like a Gladiator!",
@@ -224,7 +224,7 @@ export const eventsData: EventType[] = [
       { "position": "Runners-up", "amount": 3000 }
     ],
     "link": "https://surveyheart.com/form/67de568881919c2dfeaa967a",
-    "image_src": "/images/techlegion.png"
+    "image_src": "/images/techlegion.webp"
   },
   {
     "event_name": "ROBORACE 2025 - QUADRIGA Track Awaits!",
@@ -234,7 +234,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 5000 }
     ],
     "link": "https://forms.gle/sviYkF7YVcv7tMwLA",
-    "image_src": "/images/roborace.png"
+    "image_src": "/images/roborace.webp"
   },
   {
     "event_name": "ROBOMAZE 2025 - LABYRINTH Awaits!",
@@ -244,7 +244,7 @@ export const eventsData: EventType[] = [
       { "position": "2nd Place", "amount": 4000 }
     ],
     "link": "https://forms.gle/e7dmTscHtbeuUYjk9",
-    "image_src": "/images/robomaze.png"
+    "image_src": "/images/robomaze.webp"
   },
   {
     "event_name": "Robowars",
@@ -258,7 +258,7 @@ export const eventsData: EventType[] = [
       { "position": "15 kg - 2nd Place", "amount": 40000 }
     ],
     "link": "https://forms.gle/pguTfmf2JsjrdZqo8",
-    "image_src": "/images/robowars.png"
+    "image_src": "/images/robowars.webp"
   },
   {
     "event_name": "Techyothon - Techurja’s 24-Hour Hackathon",
@@ -269,7 +269,7 @@ export const eventsData: EventType[] = [
       { "position": "3rd Place", "amount": 3000 }
     ],
     "link": "https://lu.ma/dfhu86dm",
-    "image_src": "/images/techyothon.png"
+    "image_src": "/images/techyothon.webp"
   }
 ]
 

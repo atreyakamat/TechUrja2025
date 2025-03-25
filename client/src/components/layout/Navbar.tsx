@@ -44,10 +44,12 @@ const Navbar = () => {
         scrolled ? 'bg-[#121212]/90 border-[#C0A080]/30' : 'bg-transparent border-transparent'
       }`}>
         <div className="flex items-center">
-          <div className="inline-block w-6 h-6 mr-2">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div className="inline-block w-12 h-12 mr-2 relative -top-2">
+            {/* <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-1.55.45-3 1.22-4.23C7.79 8.27 9.83 10 12 10s4.21-1.73 6.78-2.23C19.55 9 20 10.45 20 12c0 4.41-3.59 8-8 8z" fill="#C0A080"/>
-            </svg>
+            </svg> */}
+          <img src="/logo.webp" alt="TechUrja" className="w-auto h-auto  mr-2 inline-block" />
+
           </div>
           <Link href="/">
             <a 

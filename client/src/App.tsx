@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect ,useState} from 'react';
 import { Route, Switch } from 'wouter';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -49,8 +49,18 @@ function App() {
     };
   }, []);
 
+  const handlePlayAudio = () => {
+    const audio = new Audio('/audio/audio.mp3');
+    audio.play().then(() => {
+    }).catch((err) => {
+      console.error('Audio playback failed:', err);
+    });
+  };
+
   return (
-    <div className="bg-[#121212] min-h-screen">
+    <div className="bg-[#121212] min-h-screen"
+    onClick={()=>handlePlayAudio()}
+    >
       <Navbar />
       <main>
         <Switch>
