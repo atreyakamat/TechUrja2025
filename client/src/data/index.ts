@@ -77,14 +77,79 @@ export const events: Event[] = [
 
 export const eventsData: EventType[] = [
   {
+    "event_name": "Robowars",
+    "desc": "Robowars is the ultimate clash of innovation and power, where custom-built robots battle it out in an electrifying arena. Watch as metal giants collide, sparks fly, and only the strongest bot survives. Gear up for adrenaline-pumping action and cutting-edge engineering at its fiercest!",
+    "prize_pool": [
+      { "position": "3 lbs - 1st Place", "amount": 18000 },
+      { "position": "3 lbs - 2nd Place", "amount": 12000 },
+      { "position": "8 kg - 1st Place", "amount": 40000 },
+      { "position": "8 kg - 2nd Place", "amount": 30000 },
+      { "position": "15 kg - 1st Place", "amount": 60000 },
+      { "position": "15 kg - 2nd Place", "amount": 40000 }
+    ],
+    "link": "https://forms.gle/pguTfmf2JsjrdZqo8",
+    "image_src": "/images/robowars.webp"
+  },
+  {
+    "event_name": "Robo Sumo (ROBO GLADIUS)",
+    "desc": "ROBO GLADIUS is a point-based robotic battle with two 1-minute rounds. Teams strategically maneuver their bots to score points, and a 30-second tie-breaker decides tied matches.",
+    "prize_pool": [
+      { "position": "1st Place", "amount": 20000 },
+      { "position": "2nd Place", "amount": 10000 }
+    ],
+    "link": "https://docs.google.com/forms/d/e/1FAIpQLSfYdkxLMwL-jiW6SLlgxY3tlSDUsKtgVIUAKy09CtXUWZu8ew/viewform?usp=header",
+    "image_src": "/images/robosumo.webp"
+  },
+  {
     "event_name": "Cyber Spartacus - Robosoccer",
     "desc": "Enter the battlefield of Cyber Spartacus, where robotic gladiators clash in an intense game of Robo Soccer. Assemble your team, strategize and compete for glory in this ultimate test of skill, speed, and precision.",
     "prize_pool": [
-      { "position": "1st Place", "amount": 12000 },
-      { "position": "2nd Place", "amount": 8000 }
+      { "position": "1st Place", "amount": 10000 },
+      { "position": "2nd Place", "amount": 6000 }
     ],
     "link": "https://tally.so/r/nG5N7z",
     "image_src": "/images/robosoccer.webp"
+  },
+  {
+    "event_name": "ROBORACE 2025 - QUADRIGA Track Awaits!",
+    "desc": "Step into the chariot, grip the reins, and race not just against men, but against Bots!⚡ Join us for an electrifying Gladiator-Themed Robo Event, where bots clash, speed fails, and only the fastest maneuvering survives!",
+    "prize_pool": [
+      { "position": "1st Place", "amount": 10000 },
+      { "position": "2nd Place", "amount": 5000 }
+    ],
+    "link": "https://forms.gle/sviYkF7YVcv7tMwLA",
+    "image_src": "/images/roborace.webp"
+  },
+  {
+    "event_name": "Gladiator's Trail (LFR)",
+    "desc": "Gladiator’s Trail (LFR) is a Line Follower Robot competition where bots race through a challenging track, testing speed, precision, and control.",
+    "prize_pool": [
+      { "position": "1st Place", "amount": 6000 },
+      { "position": "2nd Place", "amount": 4000 }
+    ],
+    "link": "https://forms.gle/XsvG9phGSzTphdwC7",
+    "image_src": "/images/lfr.webp"
+  },
+  {
+    "event_name": "ROBOMAZE 2025 - LABYRINTH Awaits!",
+    "desc": "Ancient chambers and passages await you! 🤖 Make your way through them in an electrifying Gladiator-Themed Robo Event, where bots are triggered, paths remain unsolved, and only the fastest make it!",
+    "prize_pool": [
+      { "position": "1st Place", "amount": 6000 },
+      { "position": "2nd Place", "amount": 4000 }
+    ],
+    "link": "https://forms.gle/e7dmTscHtbeuUYjk9",
+    "image_src": "/images/robomaze.webp"
+  },
+  {
+    "event_name": "Techyothon - Techurja’s 24-Hour Hackathon",
+    "desc": "Step into the Colosseum of Code and battle it out in an electrifying 24-hour coding marathon! No sleep, pure adrenaline, and ultimate tech glory await you.",
+    "prize_pool": [
+      { "position": "1st Place", "amount": 10000 },
+      { "position": "2nd Place", "amount": 7000 },
+      { "position": "3rd Place", "amount": 3000 }
+    ],
+    "link": "https://lu.ma/dfhu86dm",
+    "image_src": "/images/techyothon.webp"
   },
   {
     "event_name": "Codus Maximus - Coding Challenge",
@@ -147,26 +212,6 @@ export const eventsData: EventType[] = [
     "image_src": "/images/fifa.webp"
   },
   {
-    "event_name": "Robo Sumo (ROBO GLADIUS)",
-    "desc": "ROBO GLADIUS is a point-based robotic battle with two 1-minute rounds. Teams strategically maneuver their bots to score points, and a 30-second tie-breaker decides tied matches.",
-    "prize_pool": [
-      { "position": "1st Place", "amount": 20000 },
-      { "position": "2nd Place", "amount": 10000 }
-    ],
-    "link": "https://docs.google.com/forms/d/e/1FAIpQLSfYdkxLMwL-jiW6SLlgxY3tlSDUsKtgVIUAKy09CtXUWZu8ew/viewform?usp=header",
-    "image_src": "/images/robosumo.webp"
-  },
-  {
-    "event_name": "Gladiator's Trail (LFR)",
-    "desc": "Gladiator’s Trail (LFR) is a Line Follower Robot competition where bots race through a challenging track, testing speed, precision, and control.",
-    "prize_pool": [
-      { "position": "1st Place", "amount": 6000 },
-      { "position": "2nd Place", "amount": 4000 }
-    ],
-    "link": "https://forms.gle/XsvG9phGSzTphdwC7",
-    "image_src": "/images/lfr.webp"
-  },
-  {
     "event_name": "PITCH GLADIATOR (Virtual Cricket)",
     "desc": "Experience the thrill of cricket in a virtual showdown! Compete in a single-player knockout format with 5-over matches and stand a chance to win exciting prizes. Show off your cricketing skills and claim the title of champion!",
     "prize_pool": [
@@ -225,53 +270,9 @@ export const eventsData: EventType[] = [
     ],
     "link": "https://surveyheart.com/form/67de568881919c2dfeaa967a",
     "image_src": "/images/techlegion.webp"
-  },
-  {
-    "event_name": "ROBORACE 2025 - QUADRIGA Track Awaits!",
-    "desc": "Step into the chariot, grip the reins, and race not just against men, but against Bots!⚡ Join us for an electrifying Gladiator-Themed Robo Event, where bots clash, speed fails, and only the fastest maneuvering survives!",
-    "prize_pool": [
-      { "position": "1st Place", "amount": 10000 },
-      { "position": "2nd Place", "amount": 5000 }
-    ],
-    "link": "https://forms.gle/sviYkF7YVcv7tMwLA",
-    "image_src": "/images/roborace.webp"
-  },
-  {
-    "event_name": "ROBOMAZE 2025 - LABYRINTH Awaits!",
-    "desc": "Ancient chambers and passages await you! 🤖 Make your way through them in an electrifying Gladiator-Themed Robo Event, where bots are triggered, paths remain unsolved, and only the fastest make it!",
-    "prize_pool": [
-      { "position": "1st Place", "amount": 6000 },
-      { "position": "2nd Place", "amount": 4000 }
-    ],
-    "link": "https://forms.gle/e7dmTscHtbeuUYjk9",
-    "image_src": "/images/robomaze.webp"
-  },
-  {
-    "event_name": "Robowars",
-    "desc": "Robowars is the ultimate clash of innovation and power, where custom-built robots battle it out in an electrifying arena. Watch as metal giants collide, sparks fly, and only the strongest bot survives. Gear up for adrenaline-pumping action and cutting-edge engineering at its fiercest!",
-    "prize_pool": [
-      { "position": "3 lbs - 1st Place", "amount": 18000 },
-      { "position": "3 lbs - 2nd Place", "amount": 12000 },
-      { "position": "8 kg - 1st Place", "amount": 40000 },
-      { "position": "8 kg - 2nd Place", "amount": 30000 },
-      { "position": "15 kg - 1st Place", "amount": 60000 },
-      { "position": "15 kg - 2nd Place", "amount": 40000 }
-    ],
-    "link": "https://forms.gle/pguTfmf2JsjrdZqo8",
-    "image_src": "/images/robowars.webp"
-  },
-  {
-    "event_name": "Techyothon - Techurja’s 24-Hour Hackathon",
-    "desc": "Step into the Colosseum of Code and battle it out in an electrifying 24-hour coding marathon! No sleep, pure adrenaline, and ultimate tech glory await you.",
-    "prize_pool": [
-      { "position": "1st Place", "amount": 10000 },
-      { "position": "2nd Place", "amount": 7000 },
-      { "position": "3rd Place", "amount": 3000 }
-    ],
-    "link": "https://lu.ma/dfhu86dm",
-    "image_src": "/images/techyothon.webp"
   }
 ]
+
 
 
 
