@@ -22,45 +22,52 @@ const EventCard = ({ event, delay }: EventCardProps) => {
       data-aos-delay={delay.toString()}
     >
       <div className="h-auto overflow-hidden">
-        <img 
-          src={event.image_src}
-          alt={event.event_name} 
-          className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110" 
-        />
+      <img 
+        src={event.image_src}
+        alt={event.event_name} 
+        className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110" 
+      />
       </div>
       
       <div className="p-6">
-        <h3 className="font-cinzel text-xl text-[#C0A080] mb-2">{event.event_name}</h3>
-        <p className="text-white/70 mb-4 text-sm">{event.desc}</p>
+      <h3 className="font-cinzel text-xl text-[#C0A080] mb-2">{event.event_name}</h3>
+      <p className="text-white/70 mb-4 text-sm">{event.desc}</p>
+      
+      <button 
+        onClick={toggleDetails}
+        className="w-full bg-transparent hover:bg-[#C0A080]/10 text-[#C0A080] text-sm font-cinzel tracking-wider py-2 rounded border border-[#C0A080]/50 transition-all duration-300"
+      >
+        {showDetails ? 'HIDE DETAILS' : 'VIEW DETAILS'}
+      </button>
+      
+      {showDetails && (
+        <div className="mt-4 pt-4 border-t border-[#C0A080]/20">
+        <div className="flex flex-wrap gap-2 mb-4">
+          {event.prize_pool.map((prize, index) => (
+          <div 
+            key={index} 
+            className="px-3 py-1 bg-[#C0A080]/10 text-[#C0A080] text-xs rounded"
+          >
+            {prize.position}: ₹{prize.amount}
+          </div>
+          ))}
+        </div>
         
         <button 
-          onClick={toggleDetails}
-          className="w-full bg-transparent hover:bg-[#C0A080]/10 text-[#C0A080] text-sm font-cinzel tracking-wider py-2 rounded border border-[#C0A080]/50 transition-all duration-300"
+          onClick={() => window.open(event.rulebook, '_blank')}
+          className="w-full bg-[#c6785e] hover:bg-[#5a361e]/90 text-white text-sm font-cinzel tracking-wider py-2 rounded border border-[#006400]/50 transition-all duration-300 mb-2"
         >
-          {showDetails ? 'HIDE DETAILS' : 'VIEW DETAILS'}
+          RULE BOOK
         </button>
         
-        {showDetails && (
-          <div className="mt-4 pt-4 border-t border-[#C0A080]/20">
-            <div className="flex flex-wrap gap-2 mb-4">
-              {event.prize_pool.map((prize, index) => (
-                <div 
-                  key={index} 
-                  className="px-3 py-1 bg-[#C0A080]/10 text-[#C0A080] text-xs rounded"
-                >
-                  {prize.position}: ₹{prize.amount}
-                </div>
-              ))}
-            </div>
-            
-            <button 
-              onClick={() => window.open(event.link, '_blank')}
-              className="w-full bg-[#8B0000] hover:bg-[#8B0000]/90 text-white text-sm font-cinzel tracking-wider py-2 rounded border border-[#8B0000]/50 transition-all duration-300"
-            >
-              REGISTER NOW
-            </button>
-          </div>
-        )}
+        <button 
+          onClick={() => window.open(event.link, '_blank')} 
+          className="w-full bg-[#8B0000] hover:bg-[#8B0000]/90 text-white text-sm font-cinzel tracking-wider py-2 rounded border border-[#8B0000]/50 transition-all duration-300"
+        >
+          REGISTER NOW
+        </button>
+        </div>
+      )}
       </div>
     </div>
   );

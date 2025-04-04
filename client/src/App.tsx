@@ -51,6 +51,7 @@ function App() {
 
   const handlePlayAudio = () => {
     const audio = new Audio('/audio/audio.mp3');
+    audio.volume = 0.05; // Set volume to 50%
     audio.play().then(() => {
     }).catch((err) => {
       console.error('Audio playback failed:', err);

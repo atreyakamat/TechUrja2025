@@ -20,6 +20,7 @@ export interface EventType {
   }[];
   link: string;
   image_src:string;
+  rulebook:string;
 }
 
 
