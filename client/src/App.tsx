@@ -59,9 +59,7 @@ function App() {
   };
 
   return (
-    <div className="bg-[#121212] min-h-screen"
-    onClick={()=>handlePlayAudio()}
-    >
+    <div className="bg-[#121212] min-h-screen">
       <Navbar />
       <main>
         <Switch>
